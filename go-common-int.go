@@ -1,41 +1,27 @@
 package main 
 
-import ("strconv"
-	"fmt")
+import "fmt"
 
 func main() {
-	var count = make(map[string]int)
-	var lst = []int {3, 4, 1, 15, 12, 8, 8, 9, 8, 3, 10, 4, 8}
-
+	var count = make(map[int]int)
+	// var lst = []int {3, 4, 1, 15, 12, 8, 8, 9, 8, 3, 10, 4, 8}
+	var lst = []int {2}
+	var highCount = 0
+	var commonInt = 0
 
 	for _, each := range lst {
-		eachStr := strconv.Itoa(each)
-		if _, ok := count[eachStr]; ok { 
-			count[eachStr] += 1
+		if _, ok := count[each]; ok { 
+			count[each] += 1
 			} else { 
-			count[eachStr] = 1
+			count[each] = 1
 		}
-	}
-//need a second bit that iterates through the map, changing the returned
-//value based on which has the highest count
-
-	var keys []string
-	for k := range count {
-		keys = append(keys, k)
-	}
-
-	var highCount int
-	var commonInt string
-	for _, k := range keys {
-		if count[k] > highCount {
-			commonInt = k
-			highCount = count[k]
+		if count[each] > highCount {
+			highCount = count[each]
+			commonInt = each
 		}
 	}
 
 	fmt.Println(commonInt)
 
 }
-
-
 
